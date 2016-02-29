@@ -24,6 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.session = [self backgroundSession];
+    progressView.progress =0;
+    progressView.hidden =YES;
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -35,6 +39,8 @@
 #pragma 开始下载
 - (IBAction)startDownload:(id)sender
 {
+    
+    NSLog(@"点击了此按钮");
     if (self.downloadTask) {
         return;
     }
