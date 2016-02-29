@@ -20,6 +20,29 @@
     return YES;
 }
 
+
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(nonnull NSString *)identifier completionHandler:(nonnull void (^)())completionHandler
+{
+
+    self.backgroundSessionCompletionHandler = completionHandler;
+    [self presentNotification];
+
+}
+
+- (void)presentNotification
+{
+    UILocalNotification *localnotification = [[UILocalNotification alloc] init];
+    localnotification.alertBody = @"下载完成";//设置提示主题
+    localnotification.alertAction = @"后台传输下载已经完成!"; //设置提示内容
+    localnotification.soundName = UILocalNotificationDefaultSoundName;
+    //icon提示加1
+    localnotification.applicationIconBadgeNumber =  [[UIApplication sharedApplication] applicationIconBadgeNumber] +1;
+    [[UIApplication sharedApplication] presentLocalNotificationNow:localnotification];
+    
+
+
+
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
